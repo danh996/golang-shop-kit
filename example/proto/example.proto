@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "/pb";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+
+message Request {
+  int64 a = 1;
+  int64 b = 2;
+}
+
+message Response { int64 result = 1; }
+
+message AddDateRequest {
+  google.protobuf.Timestamp time = 1;
+}
+
+
+message AddDateResponse {
+  // google.protobuf.Timestamp result = 1;
+}
+service CaculatorService {
+  rpc Add(Request) returns (Response);
+  rpc AddDate(AddDateRequest) returns (google.protobuf.Empty);
+}
